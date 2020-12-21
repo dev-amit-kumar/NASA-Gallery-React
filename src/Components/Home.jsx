@@ -8,62 +8,51 @@ class Home extends React.Component{
     constructor(){
         super()
         this.state = {
-            mediaUrl : '',
-            isLoaded : false,
-            date: curr,
-            mediaType: ''
+            data : '',
+            date: curr
         }
     }
 
     changeHandler = (e) => {
         this.setState({
-            date: e.target.value
+            date: e.target.value,
+            data: ''
         })
+        this.changeNasaData(e.target.value)
     }
 
-    submitHandler = (e) => {
-        e.preventDefault()
-        this.setState({
-            mediaUrl: '',
-            mediaType: ''
-        })
-        this.changemediaUrl()
-    }
-
-    changemediaUrl(){
-        fetch(nasa_url+this.state.date,{method: 'GET'})
+    changeNasaData(date){
+        fetch(nasa_url+date,{method: 'GET'})
         .then(res => res.json())
         .then(data => this.setState({
-            mediaUrl: data.url,
-            mediaType: data.media_type
+            data: data
         }))
     }
 
     componentDidMount(){
-        this.changemediaUrl()
+        this.changeNasaData(curr)
     }
 
     render(){
         var media = ''
-        if(this.state.mediaType === 'video'){
+        if(this.state.data.media_type === 'video'){
             media = <iframe 
-            src={this.state.mediaUrl} 
+            src={this.state.data.url} 
             title="video" 
             frameBorder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowFullScreen></iframe>
         }
         else{
-            media = <img src={this.state.mediaUrl} alt="Nasa"/>
+            media = <img src={this.state.data.url} alt="Nasa"/>
         }
-        if(this.state.mediaUrl){
+        if(this.state.data.media_type){
             return(
                 <>
                     <nav className="navbar navbar-dark bg-dark">
                         <label className="navbar-brand">NASA</label>
-                        <form className="form-inline" onSubmit={this.submitHandler}>
+                        <form className="form-inline">
                             <input className="form-control mr-sm-2" type="date" max={curr} value={this.state.date} onChange={this.changeHandler}/>
-                            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Update</button>
                         </form>
                     </nav>
                     {media}

@@ -15,6 +15,9 @@ code {
 img {
   width: 100vw;
 }
+nav {
+  height: 8vh;
+}
 
 iframe {
   width: 100vw;
