@@ -49,9 +49,7 @@ class Home extends React.Component{
             return(
                 <>
                     <nav className="navbar sticky-top">
-                        <a class="navbar-brand" href="#">
-                            <img className="logo" src='https://dl.dropboxusercontent.com/s/yudlkrxyr11u73t/logo.png?dl=0' alt="logo"/>
-                        </a>
+                        <img className="logo" src='https://dl.dropboxusercontent.com/s/yudlkrxyr11u73t/logo.png?dl=0' alt="logo"/>
                         <form className="form-inline">
                             <input className="form-control mr-sm-2" type="date" max={curr} value={this.state.date} onChange={this.changeHandler}/>
                         </form>
