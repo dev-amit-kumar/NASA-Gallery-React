@@ -5,23 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-img {
-  width: 100vw;
+.logo {
+  width: 50px;
+  height: 50px;
 }
+
+.nasa-image {
+  width: 100vw;
+  margin-top: -8vh;
+}
+
 nav {
   height: 8vh;
+  background-color: #fff0;
 }
 
 iframe {
+  margin-top: -8vw;
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
 }
 
 .full-cover {
